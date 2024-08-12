@@ -12,14 +12,11 @@ set pumheight=10                        " Makes popup menu smaller
 
 set mouse=a                 " Enable mouse
 set expandtab               " Tab setting 
-set tabstop=4               " Tab setting 
-set shiftwidth=4            " Tab setting
 set listchars=tab:\¦\       " Tab charactor 
 set list
 set foldmethod=syntax         
 set foldnestmax=1
 set foldlevelstart=3        "  
-set number                  " Show line number
 set ignorecase              " Enable case-sensitive 
 
 " Disable backup
@@ -146,7 +143,8 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set theme 
 colorscheme dracula
-
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+map <silent> f :nohlsearch<CR>
 " Treesitter configuration for syntax highlighting
 lua << EOF
 require'nvim-treesitter.configs'.setup {
