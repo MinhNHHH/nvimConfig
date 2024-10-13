@@ -1,18 +1,10 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set number relativenumber
-set number
-set backspace=2                         " Backspace deletes like most programs in insert mode
-set tabstop=2
-set shiftwidth=2
-set hidden
-set pumheight=10                        " Makes popup menu smaller
-
 
 set mouse=a                 " Enable mouse
 set expandtab               " Tab setting 
-set listchars=tab:\¦\       " Tab charactor 
+"set listchars=tab:\¦\       " Tab charactor 
 set list
 set foldmethod=syntax         
 set foldnestmax=1
@@ -28,6 +20,14 @@ set noswapfile
 set synmaxcol=3000    "Prevent breaking syntax hightlight when string too long. Max = 3000"
 set lazyredraw
 au! BufNewFile,BufRead *.json set foldmethod=indent " Change foldmethod for specific filetype
+set number relativenumber
+set number
+set backspace=2                         " Backspace deletes like most programs in insert mode
+set tabstop=2
+set shiftwidth=2
+set hidden
+set pumheight=10                        " Makes popup menu smaller
+
 
 syntax on
 
@@ -45,7 +45,7 @@ let mapleader = ","
 nnoremap <Leader>n :bnext<CR>
 " Map <Leader>p to :bprevious
 nnoremap <Leader>p :bprevious<CR>
-
+nnoremap <C-d> :bwipe<CR>
 
 " Auto reload content changed outside
 au CursorHold,CursorHoldI * checktime
@@ -134,7 +134,7 @@ call plug#begin('~/.config/nvim/plugged')
 "Go lang""
   Plug 'fatih/vim-go'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
+  
 call plug#end()
 
 
@@ -145,6 +145,8 @@ call plug#end()
 colorscheme dracula
 inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 map <silent> f :nohlsearch<CR>
+nnoremap <silent> gd <Plug>(coc-definition)
+
 " Treesitter configuration for syntax highlighting
 lua << EOF
 require'nvim-treesitter.configs'.setup {
